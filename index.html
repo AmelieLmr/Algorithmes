@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bazard</title>
+  </head>
+  <body>
+    <form id="form">
+      <input type="text" name="listeTexte" />
+      <button type="submit">Ajouter</button>
+    </form>
+
+    <button id="sendBtn" type="button">Envoyer</button>
+
+    <script>
+      const sendBtn = document.getElementById("sendBtn");
+      const form = document.getElementById("form");
+      sendBtn.addEventListener("click", handleSend);
+      form.addEventListener("submit", handleClick);
+
+      const listes = [];
+
+      function handleClick(e) {
+        e.preventDefault();
+        const input = e.target.listeTexte;
+        const value = input.value;
+        if (!hasDoublon(listes, value)) {
+          listes.push(value);
+          // form.insertAdjacentHTML("beforeend","<p>"+ value +"</p>");
+          form.innerHTML += `<p>${value}</p>`;
+        }
+        input.value = "";
+      }
+
+      function handleSend(e) {
+        console.log(listes);
+      }
+
+      function hasDoublon(listes, inputValue) {
+        //   if (listes.includes(inputValue)) {
+        //     return true;
+        //   } else {
+        //     return false;
+        //   }
+        return listes.includes(inputValue);
+      }
+    </script>
+  </body>
+</html>
